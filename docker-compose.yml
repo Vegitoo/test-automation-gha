@@ -1,14 +1,25 @@
-version: '3.8'
-
+version: '3'
 services:
   formatter:
-    build: .
-    command: ["black", "."]
-  
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: black .
+    volumes:
+      - .:/app
+
   linter:
-    build: .
-    command: ["flake8", "."]
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: flake8 .
+    volumes:
+      - .:/app
 
   tests:
-    build: .
-    command: ["pytest", "tests/"]
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: pytest
+    volumes:
+      - .:/app
