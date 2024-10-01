@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  formatter:
+    build: .
+    command: ["black", "."]
+  
+  linter:
+    build: .
+    command: ["flake8", "."]
+
+  tests:
+    build: .
+    command: ["pytest", "tests/"]
